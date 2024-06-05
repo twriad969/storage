@@ -12,23 +12,7 @@ const downloadVideo = (url, fileName) => {
         const file = fs.createWriteStream(fileName);
         const videoRequest = request.get({ url: url, encoding: null });
 
-        let totalSize = 0;
-        let downloadedSize = 0;
-
         videoRequest.on('response', (response) => {
-            if (response.headers['content-length']) {
-                totalSize = parseInt(response.headers['content-length'], 10);
-            }
-
-            response.on('data', (chunk) => {
-                downloadedSize += chunk.length;
-                // Send progress to client every 5 seconds
-                if (downloadedSize % (5 * 1024 * 1024) === 0) { // Update every 5 MB
-                    const progress = (downloadedSize / totalSize) * 100;
-                    console.log(`Download Progress: ${progress.toFixed(2)}%`);
-                }
-            });
-
             response.pipe(file);
 
             file.on('finish', () => {
