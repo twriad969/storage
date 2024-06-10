@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
 
         // Generate direct playback link
         // For demonstration purposes, let's assume the server address is localhost
-        const directLink = `https://storagebyronok-da857e72ed19.herokuapp.com/${videoFileName}`;
+        const directLink = `https://diskbyronok-9050f4e8069b.herokuapp.com/${videoFileName}`;
 
         // Automatically delete the video after 10 minutes
         setTimeout(() => {
